@@ -67,13 +67,13 @@ public class SubscriberAction extends BaseAction {
 	public Resolution save() {
 		if (subscriber.getId() == null) {
 			subscriberMapper.insert(subscriber);
-			for(final Integer topicId : subscriber.getTopicIds()) {
+			for (final Integer topicId : subscriber.getTopicIds()) {
 				subscriberTopicMapper.insert(subscriber.getId(), topicId);
 			}
 		} else {
 			subscriberMapper.update(subscriber);
 			subscriberTopicMapper.deleteForSubscriber(subscriber.getId());
-			for(final Integer topicId : subscriber.getTopicIds()) {
+			for (final Integer topicId : subscriber.getTopicIds()) {
 				subscriberTopicMapper.insert(subscriber.getId(), topicId);
 			}
 		}

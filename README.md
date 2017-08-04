@@ -1,14 +1,7 @@
 Basic Web App
 
-JGitFlow Goals:
+This is a basic self contained web app that uses Stripes, Guice, MyBatis, JSP, HSQLDB, and Maven.
 
-jgitflow:build-number
-jgitflow:feature-deploy
-jgitflow:feature-finish
-jgitflow:feature-start
-jgitflow:hotfix-finish
-jgitflow:hotfix-start
-jgitflow:release-finish
-jgitflow:release-start
+The app can be run from terminal using the Maven command:
 
-slight change
+	mvn jetty:run

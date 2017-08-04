@@ -26,34 +26,23 @@ public class HsqlDbSetupServlet extends HttpServlet {
 	}
 
 	private void buildDatabase() throws IOException {
-		SqlSession sqlSession = sqlSessionManager.openSession();
-		try {
+		try (final SqlSession sqlSession = sqlSessionManager.openSession()) {
 			final ScriptRunner scriptRunner = new ScriptRunner(sqlSession.getConnection());
 			buildSchema(scriptRunner);
 			populateData(scriptRunner);
 			sqlSession.commit();
-		} finally {
-			sqlSession.close();
 		}
 	}
 
 	private void populateData(final ScriptRunner scriptRunner) throws IOException {
-		Reader dataloadReader = null;
-		try {
-			dataloadReader = Resources.getResourceAsReader("co/ds/database/hsqldb-dataload.sql");
+		try (final Reader dataloadReader = Resources.getResourceAsReader("co/ds/database/hsqldb-dataload.sql")) {
 			scriptRunner.runScript(dataloadReader);
-		} finally {
-			IOUtils.closeQuietly(dataloadReader);
 		}
 	}
 
 	private void buildSchema(final ScriptRunner scriptRunner) throws IOException {
-		Reader schemaReader = null;
-		try {
-			schemaReader = Resources.getResourceAsReader("co/ds/database/hsqldb-schema.sql");
+		try (final Reader schemaReader = Resources.getResourceAsReader("co/ds/database/hsqldb-schema.sql")) {
 			scriptRunner.runScript(schemaReader);
-		} finally {
-			IOUtils.closeQuietly(schemaReader);
 		}
 	}
 

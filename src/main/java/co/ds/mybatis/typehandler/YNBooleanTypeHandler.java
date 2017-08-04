@@ -24,25 +24,21 @@ public class YNBooleanTypeHandler implements TypeHandler<Boolean> {
 
 	@Override
 	public Boolean getResult(final ResultSet rs, final String columnName) throws SQLException {
-		final String result = trimAndUpcase(rs.getString(columnName));
-		if (null == result) return null;
-		if (TRUE_STRING.equals(result)) return true;
-		if (FALSE_STRING.equals(result)) return false;
-		throw new SQLException("Unable to map '" + result + "' to a boolean value.");
+		return getResult(rs.getString(columnName));
 	}
 
 	@Override
 	public Boolean getResult(final ResultSet resultSet, final int columnIndex) throws SQLException {
-		final String result = trimAndUpcase(resultSet.getString(columnIndex));
-		if (null == result) return null;
-		if (TRUE_STRING.equals(result)) return true;
-		if (FALSE_STRING.equals(result)) return false;
-		throw new SQLException("Unable to map '" + result + "' to a boolean value.");
+		return getResult(resultSet.getString(columnIndex));
 	}
 
 	@Override
 	public Boolean getResult(final CallableStatement cs, final int columnIndex) throws SQLException {
-		final String result = trimAndUpcase(cs.getString(columnIndex));
+		return getResult(cs.getString(columnIndex));
+	}
+
+	private Boolean getResult(final String value) throws SQLException {
+		final String result = trimAndUpcase(value);
 		if (null == result) return null;
 		if (TRUE_STRING.equals(result)) return true;
 		if (FALSE_STRING.equals(result)) return false;
