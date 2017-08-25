@@ -10,6 +10,7 @@
 
 			#welcome-content ul, #welcome-content ul li {
 				list-style-type: none;
+				margin-bottom: 10px;
 			}
 
 			#welcome-content ul {
@@ -29,6 +30,7 @@
 					<h3>Tools</h3>
 					<ul>
 						<li><stripes:link beanclass="co.ds.stripes.SubscriberAction">Subscribers</stripes:link></li>
+						<li><stripes:link beanclass="co.ds.stripes.TopicAction">Topics</stripes:link></li>
 					</ul>
 				</li>
 			</ul>

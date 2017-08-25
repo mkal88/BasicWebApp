@@ -1,6 +1,8 @@
 package co.ds.bean;
 
-public class Topic {
+import java.io.Serializable;
+
+public class Topic implements Serializable {
 
 	private Integer id;
 	private String name;
